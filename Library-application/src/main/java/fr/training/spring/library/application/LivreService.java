@@ -19,6 +19,10 @@ public class LivreService {
         return livreRepository.searchlivreByISBN(isbn);
     }
 
+    public Livre createLivre(Livre livre) {
+        return  livreRepository.create(livre);
+    }
+
     public Bibliotheque enregistreLivre(Long bibliothequeId, String isbn, GenreLitteraire genre) {
         Bibliotheque bib = serviceBibliotheque.findById(bibliothequeId);
         Livre livre = searchlivreByISBN(isbn);
@@ -29,5 +33,9 @@ public class LivreService {
 //                livre.getPageNumber(),genre);
 //        bib.getLivres().add(livreMaj);
         return serviceBibliotheque.update(bib);
+    }
+
+    public Livre chercheLivreById(Long id) {
+        return livreRepository.findById(id);
     }
 }

@@ -5,6 +5,7 @@ import fr.training.spring.library.domain.LivreRepository;
 import fr.training.spring.library.domain.exception.ErrorCodes;
 import fr.training.spring.library.domain.exception.NotFoundException;
 import fr.training.spring.library.domain.exception.OpenLibraryTechnicalException;
+import fr.training.spring.library.infrastructure.entiteJpa.LivreMapperJpa;
 import fr.training.spring.library.infrastructure.http.dto.AuthorInfo;
 import fr.training.spring.library.infrastructure.http.dto.BookInfo;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,21 @@ public class LivreRepositoryImpl implements LivreRepository {
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(LivreRepositoryImpl.class);
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private LivreJpaRepository livreJpaRepository;
+    @Autowired
+    private LivreMapperJpa livreMapperJpa;
+
+    @Override
+    public Livre findById(Long id) {
+        return livreMapperJpa.mapToEntity(livreJpaRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Livre not found", ErrorCodes.BOOK_NOT_FOUND)));
+    }
+
+    @Override
+    public Livre create(Livre livre) {
+        return livreMapperJpa.mapToEntity(livreJpaRepository.save(livreMapperJpa.mapToJpa(livre)));
+    }
 
     @Override
     public Livre searchlivreByISBN(String isbn) {

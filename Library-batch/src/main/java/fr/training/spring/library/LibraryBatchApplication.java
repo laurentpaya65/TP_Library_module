@@ -1,4 +1,4 @@
-package fr.training.spring.library.batch;
+package fr.training.spring.library;
 
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.boot.SpringApplication;
@@ -7,8 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = { "fr.training.spring.library" })
-@EnableBatchProcessing(modular = true)
+@EnableBatchProcessing
 public class LibraryBatchApplication {
 
 	/**

@@ -18,6 +18,8 @@ public interface BibliothequeJpaRepository extends CrudRepository<BibliothequeJp
 
     List<BibliothequeJpa> findAllByAdresseJpa_CodePostal(String codePostal);
 
+    List<BibliothequeJpa> findAllByLivreJpasId(Long livreId);
+
     @Query("SELECT b FROM BIBLIOTHEQUE b WHERE b.directeurJpa.prenom = ?1")
     List<BibliothequeJpa> searchByDirecteurJpaPrenomWithJPQLQuery(String prenom);
     @Query("SELECT b FROM BIBLIOTHEQUE b WHERE b.adresseJpa.codePostal = ?1")

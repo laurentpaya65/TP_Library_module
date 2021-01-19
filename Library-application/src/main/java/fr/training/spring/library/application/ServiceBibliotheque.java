@@ -57,6 +57,10 @@ public class ServiceBibliotheque {
     public List<Bibliotheque> finaAllByCodePostal(String codePostal) {
         return bibliothequeRepository.bibliothequesParCodePostal(codePostal);
     }
+    @Transactional(readOnly = true)
+    public List<Bibliotheque> findAllByLivreId(Long livreId) {
+        return bibliothequeRepository.bibliothequesParLivreId(livreId);
+    }
 
 
 }

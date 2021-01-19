@@ -21,4 +21,6 @@ public interface BibliothequeRepository {
     public List<Bibliotheque> bibliothequesParPrenom(String prenom);
 
     public List<Bibliotheque> bibliothequesParCodePostal(String CodePostal);
+
+    public List<Bibliotheque> bibliothequesParLivreId(Long livreId);
 }

@@ -65,4 +65,9 @@ public class ControllerBibliotheque {
     public List<BibliothequeDto> toutesParCodePostal(@PathVariable("codePostal") String codePostal) {
         return bibliothequeMapper.mapToDtoList(serviceBibliotheque.finaAllByCodePostal(codePostal));
     }
+
+    @GetMapping(value = {"/toutesparlivreid/{livreId}"},produces = {"application/json"})
+    public List<BibliothequeDto> toutesParLivreId(@PathVariable("livreId") final Long livreId ) {
+        return bibliothequeMapper.mapToDtoList(serviceBibliotheque.findAllByLivreId(livreId));
+    }
 }

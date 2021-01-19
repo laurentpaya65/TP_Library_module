@@ -57,4 +57,9 @@ public class BibliothequeRepositoryImpl implements BibliothequeRepository {
     public List<Bibliotheque> bibliothequesParCodePostal(String CodePostal) {
         return bibliothequeMapperJpa.mapToEntityList( bibliothequeJpaRepository.findAllByAdresseJpa_CodePostal(CodePostal));
     }
+
+    @Override
+    public List<Bibliotheque> bibliothequesParLivreId(Long livreId) {
+        return bibliothequeMapperJpa.mapToEntityList(bibliothequeJpaRepository.findAllByLivreJpasId(livreId));
+    }
 }
